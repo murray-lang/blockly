@@ -684,6 +684,6 @@ function onClickLaunch()
         return;
     }
     //cricketComms.run(cricket);
-    //httpPostCodes(cricket);
-    httpQueryWeta();
+    httpPostCodes(cricket);
+    //httpQueryWeta();
 }
