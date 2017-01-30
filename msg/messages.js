@@ -64,6 +64,18 @@ Blockly.Msg.COLOUR_HUE = '20';
 Blockly.Msg.VARIABLES_HUE = '330';
 /// {{Notranslate}} Hue value for all procedure blocks.
 Blockly.Msg.PROCEDURES_HUE = '290';
+/// {{Notranslate}} Hue value for Weta communications blocks.
+Blockly.Msg.WETA_COMMS_HUE = '20';
+/// {{Notranslate}} Hue value for Weta I/O blocks.
+Blockly.Msg.WETA_IO_HUE = '290';
+/// {{Notranslate}} Hue value for Weta motors blocks.
+Blockly.Msg.WETA_MOTORS_HUE = '65';
+/// {{Notranslate}} Hue value for Weta servos blocks.
+Blockly.Msg.WETA_SERVO_HUE = '65';
+/// {{Notranslate}} Hue value for Weta time blocks.
+Blockly.Msg.WETA_TIME_HUE = '120';
+/// {{Notranslate}} Hue value for Weta turtle blocks.
+Blockly.Msg.WETA_TURTLE_HUE = '65';
 
 /// default name - A simple, general default name for a variable, preferably short.
 /// For more context, see
@@ -1159,3 +1171,193 @@ Blockly.Msg.PROCEDURES_IFRETURN_TOOLTIP = 'If a value is true, then return a sec
 Blockly.Msg.PROCEDURES_IFRETURN_HELPURL = 'http://c2.com/cgi/wiki?GuardClause';
 /// warning - This appears if the user tries to use this block outside of a function definition.
 Blockly.Msg.PROCEDURES_IFRETURN_WARNING = 'Warning: This block may be used only within a function definition.';
+// For now, messages for Weta will be placed here. They should be moved later.
+
+/// Name of forever loop block used in Logo
+Blockly.Msg.WETA_FOREVER_MSG0 = 'forever %1 %2';
+/// Tooltip for Weta Forever block
+Blockly.Msg.WETA_FOREVER_TOOLTIP = 'Repeat the given instructions forever';
+/// Name of Weta Send block
+Blockly.Msg.WETA_SEND_MSG0 = 'send %1';
+/// Tooltip for Weta Send block
+Blockly.Msg.WETA_SEND_TOOLTIP = 'Send to the default output';
+/// Name of Weta Send Array block
+Blockly.Msg.WETA_SEND_ARRAY_MSG0 = 'send to serial port %1 %2 bytes: %3 length: %4';
+/// Tooltip for Weta Send Array block
+Blockly.Msg.WETA_SEND_ARRAY_TOOLTIP = 'Send byte array data to the selected serial port';
+/// Name of Weta Receive block
+Blockly.Msg.WETA_RECEIVE_MSG0 = 'receive';
+/// Tooltip for Weta Receive block
+Blockly.Msg.WETA_RECEIVE_TOOLTIP = 'Receive from the default input';
+/// Name of Weta Receive Array block
+Blockly.Msg.WETA_RECEIVE_ARRAY_MSG0 = 'receive from port %1 %2 buffer: %3 length: %4 timeout: %5 ms';
+/// Tooltip for Weta Receive Array block
+Blockly.Msg.WETA_RECEIVE_ARRAY_TOOLTIP = 'Receive from the default input';
+/// Name of Weta Available block
+Blockly.Msg.WETA_AVAILABLE_MSG0 = 'data available?';
+/// Tooltip for Weta Available block
+Blockly.Msg.WETA_AVAILABLE_TOOLTIP = 'Is data available from the default port';
+/// Name of Weta Available From block
+Blockly.Msg.WETA_AVAILABLE_FROM_MSG0 = 'data available from port %1 %2 ?';
+/// Tooltip for Weta Available From block
+Blockly.Msg.WETA_AVAILABLE_FROM_TOOLTIP = 'Is data available from the given port';
+/// Name of Weta Beep block
+Blockly.Msg.WETA_BEEP_MSG0 = 'beep';
+/// Tooltip for Weta Beep block
+Blockly.Msg.WETA_BEEP_TOOLTIP = 'Beep';
+/// Name of Weta LED block
+Blockly.Msg.WETA_LED_MSG0 = 'LED %1';
+/// Tooltip for Weta LED block
+Blockly.Msg.WETA_LED_TOOLTIP = 'Turn the user LED on or off';
+/// On (eg LED)
+Blockly.Msg.WETA_ON = 'on';
+/// Off (eg LED)
+Blockly.Msg.WETA_OFF = 'off';
+/// Left (eg Servo or Turtle)
+Blockly.Msg.WETA_LEFT = 'left';
+/// Right (eg Servo or Turtle)
+Blockly.Msg.WETA_RIGHT = 'right';
+/// Up (eg pen)
+Blockly.Msg.WETA_UP = 'up';
+/// Down (eg pen)
+Blockly.Msg.WETA_DOWN = 'down';
+/// Name of Weta Digital In block
+Blockly.Msg.WETA_DIGITAL_IN_MSG0 = 'digital input %1';
+/// Tooltip for Digital In block
+Blockly.Msg.WETA_DIGITAL_IN_TOOLTIP = 'Get the given digital input value';
+/// Name of Weta Digital In block
+Blockly.Msg.WETA_DIGITAL_OUT_MSG0 = 'digital output %1 = %2';
+/// Tooltip for Digital In block
+Blockly.Msg.WETA_DIGITAL_OUT_TOOLTIP = 'Set the given digital output to the given value';
+/// Name of Weta Analog In block
+Blockly.Msg.WETA_ANALOG_IN_MSG0 = 'analog input %1';
+/// Tooltip for Analog In block
+Blockly.Msg.WETA_ANALOG_IN_TOOLTIP = 'Get the given analog input value';
+/// Name of Weta Analog In block
+Blockly.Msg.WETA_ANALOG_OUT_MSG0 = 'analog output %1 = %2';
+/// Tooltip for Analog In block
+Blockly.Msg.WETA_ANALOG_OUT_TOOLTIP = 'Set the given analog output to the given value';
+/// Name of Weta Switch block
+Blockly.Msg.WETA_SWITCH_MSG0 = 'switch %1';
+/// Tooltip for Weta Switch block
+Blockly.Msg.WETA_SWITCH_TOOLTIP = 'Get the value of the given switch';
+/// Name of Weta Sensor block
+Blockly.Msg.WETA_SENSOR_MSG0 = 'sensor %1';
+/// Tooltip for Weta Sensor block
+Blockly.Msg.WETA_SENSOR_TOOLTIP = 'Get the value of the given sensor';
+/// Weta Logical AND operation
+Blockly.Msg.WETA_LOGIC_AND = 'and';
+/// Weta Logical OR operation
+Blockly.Msg.WETA_LOGIC_OR = 'or';
+/// Weta Logical XOR operation
+Blockly.Msg.WETA_LOGIC_XOR = 'xor';
+/// Tooltip for Weta logical operation
+Blockly.Msg.WETA_LOGIC_OPERATION_TOOLTIP = 'Return the logical operation between the two operands';
+/// Name of Weta Motor select block
+Blockly.Msg.WETA_MOTORS_SELECT_MSG0 = 'select motors a %1 b %2 c %3 d %4 e %5 f %6 g %7 h %8';
+/// Tooltip for Weta Motors select block
+Blockly.Msg.WETA_MOTORS_SELECT_TOOLTIP = 'Select motors for the following commands';
+/// Name of Weta Motor control block
+Blockly.Msg.WETA_MOTORS_CONTROL_MSG0 = 'motors %1';
+/// Tooltip for Weta Motors select block
+Blockly.Msg.WETA_MOTORS_CONTROL_TOOLTIP = 'Control the currently selected motors';
+/// Weta Motors this way
+Blockly.Msg.WETA_MOTORS_THISWAY = 'this way';
+/// Weta Motors that way
+Blockly.Msg.WETA_MOTORS_THATWAY = 'that way';
+/// Weta Motors reverse
+Blockly.Msg.WETA_MOTORS_REVERSE = 'reverse direction';
+/// Weta Motors brake
+Blockly.Msg.WETA_MOTORS_BRAKE = 'brake';
+/// Name of Weta Motor power block
+Blockly.Msg.WETA_MOTORS_POWER_MSG0 = 'Set motor power to %1';
+/// Tooltip for Weta Motors power block
+Blockly.Msg.WETA_MOTORS_POWER_TOOLTIP = 'Set the power of the selected motors (0-255)';
+/// Name of Weta Motors On For block
+Blockly.Msg.WETA_MOTORS_ON_FOR_MSG0 = 'motors on for %1 10ths of a second';
+/// Tooltip for Weta Motors On For block
+Blockly.Msg.WETA_MOTORS_ON_FOR_TOOLTIP = 'Turn the selected motors on for the given 10ths of a second';
+/// Name of Weta Servos select block
+Blockly.Msg.WETA_SERVO_SELECT_MSG0 = 'select servos n %1 o %2 p %3 q %4 r %5 s %6 t %7 u %8';
+/// Tooltip for Weta Servos select block
+Blockly.Msg.WETA_SERVO_SELECT_TOOLTIP = 'Select servos for the following commands';
+/// Name of Weta Servos heading block
+Blockly.Msg.WETA_SERVO_HEADING_MSG0 = 'set servos heading %1';
+/// Tooltip for Weta Servos heading block
+Blockly.Msg.WETA_SERVO_HEADING_TOOLTIP = 'Set the selected servos to the given heading';
+/// Name of Weta Servos left/right turn block
+Blockly.Msg.WETA_SERVO_LEFT_RIGHT_MSG0 = 'servos %1 by %2';
+/// Tooltip for Weta Servos left/right turn block
+Blockly.Msg.WETA_SERVO_LEFT_RIGHT_TOOLTIP = 'Turn the selected servos';
+/// Name of Weta String of length block
+Blockly.Msg.WETA_STRING_OF_LENGTH_MSG0 = 'string of length %1';
+/// Tooltip for Weta String of length block
+Blockly.Msg.WETA_STRING_OF_LENGTH_TOOLTIP = 'Allocate an empty string of the given length';
+/// Name of Weta To String block
+Blockly.Msg.WETA_TO_STRING_MSG0 = 'convert %1 to a string';
+/// Tooltip for Weta To String block
+Blockly.Msg.WETA_TO_STRING_TOOLTIP = 'Convert the given value to a string';
+/// Name of Weta Get Timer block
+Blockly.Msg.WETA_GET_TIMER_MSG0 = 'get timer';
+/// Tooltip for Weta Get Timer block
+Blockly.Msg.WETA_GET_TIMER_TOOLTIP = 'Get the current timer tick count';
+/// Name of Weta Reset Timer block
+Blockly.Msg.WETA_RESET_TIMER_MSG0 = 'reset timer';
+/// Tooltip for Weta Reset Timer block
+Blockly.Msg.WETA_RESET_TIMER_TOOLTIP = 'Reset the timer tick count to 0';
+/// Name of Weta Wait Millis block
+Blockly.Msg.WETA_WAIT_MILLIS_MSG0 = 'wait for %1 milliseconds';
+/// Tooltip for Weta Wait Millis block
+Blockly.Msg.WETA_WAIT_MILLIS_TOOLTIP = 'Wait for the given number of milliseconds';
+/// Name of Weta Wait Tenths block
+Blockly.Msg.WETA_WAIT_TENTHS_MSG0 = 'wait for %1 tenths of a second';
+/// Tooltip for Weta Wait Tenths block
+Blockly.Msg.WETA_WAIT_TENTHS_TOOLTIP = 'Wait for the given tenths of a second';
+/// Name of Weta Wait Until block
+Blockly.Msg.WETA_WAIT_UNTIL_MSG0 = 'wait until %1';
+/// Tooltip for Weta Wait Until block
+Blockly.Msg.WETA_WAIT_UNTIL_TOOLTIP = 'Wait for the given condition to become true';
+/// Name of Weta Turtle Forward block
+Blockly.Msg.WETA_TURTLE_FORWARD_MSG0 = 'forward %1 mm';
+/// Tooltip for Weta Turtle Forward block
+Blockly.Msg.WETA_TURTLE_FORWARD_TOOLTIP = 'Move the turtle forward'
+/// Name of Weta Turtle Backward block
+Blockly.Msg.WETA_TURTLE_BACKWARD_MSG0 = 'backward %1 mm';
+/// Tooltip for Weta Turtle Backward block
+Blockly.Msg.WETA_TURTLE_BACKWARD_TOOLTIP = 'Move the turtle backward';
+/// Name of Weta Turtle Turn block
+Blockly.Msg.WETA_TURTLE_TURN_MSG0 = 'turn %1 %2 degrees';
+/// Tooltip for Weta Turtle Turn block
+Blockly.Msg.WETA_TURTLE_TURN_TOOLTIP = 'Turn left or right';
+/// Name of Weta Turtle Pen block
+Blockly.Msg.WETA_TURTLE_PEN_MSG0 = 'pen %1';
+/// Tooltip for Weta Turtle Pen block
+Blockly.Msg.WETA_TURTLE_PEN_TOOLTIP = 'Lift or place the pen';
+/// Name of Weta Declare Array block
+Blockly.Msg.WETA_DECLARE_ARRAY_MSG0 = 'array %1 of size %2';
+/// Tooltip for Weta Declare Array block
+Blockly.Msg.WETA_DECLARE_ARRAY_TOOLTIP = 'Declare an array with the given number of elements';
+/// Name of Weta Declare Typed Array block
+Blockly.Msg.WETA_DECLARE_TYPED_ARRAY_MSG0 = 'array %1 of %2 with size %3';
+/// Tooltip for Weta Declare Typed Array block
+Blockly.Msg.WETA_DECLARE_TYPED_ARRAY_TOOLTIP = 'Declare an array of the given type with the given number of elements';
+/// Name of Weta Get Reference block
+Blockly.Msg.WETA_REFERENCE_MSG0 = 'reference to %1';
+/// Tooltip for Weta Get Reference block
+Blockly.Msg.WETA_REFERENCE_TOOLTIP = 'Get a reference to the given variable';
+/// Name of Weta  Dereference block
+Blockly.Msg.WETA_DEREFERENCE_MSG0 = 'dereference %1';
+/// Tooltip for Weta Dereference block
+Blockly.Msg.WETA_DEREFERENCE_TOOLTIP = 'Get the value of the variable referenced by the given variable';
+/// Name of Weta Set Referenced By block
+Blockly.Msg.WETA_SET_REFERENCED_BY_MSG0 = 'set variable referenced by %1 to %2';
+/// Tooltip for Weta Set Referenced By block
+Blockly.Msg.WETA_SET_REFERENCED_BY_TOOLTIP = 'Set the value of the variable referenced by the given variable';
+/// Name of Weta Set Array block
+Blockly.Msg.WETA_SET_ARRAY_MSG0 = 'Set item # %1 in %2 %3 %4 to %5';
+/// Tooltip for Weta Set Array block
+Blockly.Msg.WETA_SET_ARRAY_TOOLTIP = 'Set the item in the given array to the given value';
+/// Name of Weta Get Array block
+Blockly.Msg.WETA_GET_ARRAY_MSG0 = 'Get item # %1 in %2 %3';
+/// Tooltip for Weta Get Array block
+Blockly.Msg.WETA_GET_ARRAY_TOOLTIP = 'Get the given item from the given array';
