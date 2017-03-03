@@ -64,7 +64,7 @@ Blockly.defineBlocksWithJsonArray(
             "on"
           ],
           [
-            "%{BKY_WETA_ON}",
+            "%{BKY_WETA_OFF}",
             "off"
           ],
           [

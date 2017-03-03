@@ -28,7 +28,7 @@ Blockly.Logo['weta_motors_control'] = function(block) {
     var code = block.getFieldValue('OP');
 
     if (code.length > 0)
-        code += ",\n";
+        code += "\n";
     return code;
 };
 
@@ -178,14 +178,10 @@ Blockly.Logo['weta_available'] = function(block) {
     return ["received?", Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.Logo['weta_turtle_forward'] = function(block) {
+Blockly.Logo['weta_turtle_forward_backward'] = function(block) {
+    var dir = block.getFieldValue('DIR');
     var mm = Blockly.JavaScript.valueToCode(block, 'VAL', Blockly.JavaScript.ORDER_ATOMIC);
-    return "forward " + mm +"\n";
-};
-
-Blockly.Logo['weta_turtle_backward'] = function(block) {
-    var mm = Blockly.JavaScript.valueToCode(block, 'VAL', Blockly.JavaScript.ORDER_ATOMIC);
-    return "backward " + mm +"\n";
+    return dir + " " + mm +"\n";
 };
 
 Blockly.Logo['weta_turtle_turn'] = function(block) {

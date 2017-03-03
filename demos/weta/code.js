@@ -30,6 +30,8 @@
  */
 var Code = {};
 
+Code.recording = false; // If true then program Flash, otherwise RAM
+
 /**
  * Lookup for names of supported languages.  Keys should be in ISO 639 format.
  */
@@ -318,11 +320,11 @@ Code.renderContent = function() {
   } else if (content.id == 'content_wasm') {
     // Get Logo code first
     var code = Blockly.Logo.workspaceToCode(Code.workspace);
-    //content.innerHTML = compileLogo(code);
+    //content.innerHTML = this.compileLogo(code);
     var wasmTextarea = document.getElementById('content_wasm');
     try
     {
-      wasmTextarea.value = compileLogo(code);
+      wasmTextarea.value = this.compileLogo(code);
       wasmTextarea.focus();
     }
     catch (err)
@@ -342,7 +344,7 @@ Code.renderContent = function() {
       var wasm;
       try
       {
-          wasm = compileLogo(code);
+          wasm = this.compileLogo(code);
       }
       catch (logoerr)
       {
@@ -352,7 +354,7 @@ Code.renderContent = function() {
       // then assemble to cricket codes
       try
       {
-          var jsonCricket = assembleWasm(wasm);
+          var jsonCricket = this.assembleWasm(wasm);
           jsonTextarea.value = JSON.stringify(jsonCricket);
       }
       catch (wasmerr)
@@ -432,7 +434,14 @@ Code.init = function() {
 
   Code.bindClick('trashButton',
       function() {Code.discard(); Code.renderContent();});
-  Code.bindClick('runButton', onClickLaunch);
+    
+  Code.bindClick('openButton', onClickOpen);
+  Code.bindClick('saveButton', onClickSave);
+  Code.bindClick('stopButton', onClickStop);
+  Code.bindClick('playButton', onClickPlay);
+  Code.bindClick('recordButton', onClickRecord);
+  //Code.bindClick('runButton', onClickLaunch);
+  
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
@@ -505,9 +514,14 @@ Code.initLanguage = function() {
   document.getElementById('title').textContent = MSG['title'];
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
 
-  document.getElementById('linkButton').title = MSG['linkTooltip'];
-  document.getElementById('runButton').title = MSG['runTooltip'];
+  //document.getElementById('linkButton').title = MSG['linkTooltip'];
+  //document.getElementById('runButton').title = MSG['runTooltip'];
   document.getElementById('trashButton').title = MSG['trashTooltip'];
+    document.getElementById('openButton').title = MSG['openTooltip'];
+    document.getElementById('saveButton').title = MSG['saveTooltip'];
+    document.getElementById('stopButton').title = MSG['stopTooltip'];
+    document.getElementById('playButton').title = MSG['playTooltip'];
+    document.getElementById('recordButton').title = MSG['recordTooltip'];
 };
 
 /**
@@ -552,7 +566,7 @@ document.write('<script src="../../msg/js/' + Code.LANG + '.js"></script>\n');
 
 window.addEventListener('load', Code.init);
 
-function logToConsole(msg, focus)
+function logToConsole (msg, focus)
 {
     var consoleTextarea = document.getElementById("content_console");
     consoleTextarea.value += msg + "\n";
@@ -561,7 +575,7 @@ function logToConsole(msg, focus)
         consoleTextarea.focus();
 }
 
-function compileLogo(code)
+Code.compileLogo = function (code)
 {
     var wsm = "";
     var err = "";
@@ -585,7 +599,7 @@ function compileLogo(code)
     return wsm;
 }
 
-function assembleWasm(code)
+Code.assembleWasm = function (code)
 {
     var formatter = new MessageFormatter('./i18n', 'es', logToConsole, logToConsole, logToConsole, logToConsole);
     var wa = new WetaAssembler(formatter);
@@ -595,12 +609,12 @@ function assembleWasm(code)
     return jsonWasm; //cricket;
 }
 
-function httpPostCodes(codes)
+Code.httpPostRobot = function (cmd, codes)
 {
     var settings = document.forms["settings"];
     var robot_ip = settings.elements["robot_ip"].value;
     if (robot_ip.empty)
-        logToConsole("No Robot IP address supplied\n");
+        this.logToConsole("No Robot IP address supplied\n");
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function()
@@ -615,40 +629,47 @@ function httpPostCodes(codes)
         }
 
     };
-    xhttp.open("POST", "http://" + robot_ip.trim() + "/weta?cmd=program", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    var jsonstr = JSON.stringify(codes);
-    xhttp.send(jsonstr);
-}
 
-function httpQueryWeta()
-{
-  var settings = document.forms["settings"];
-  var robot_ip = settings.elements["robot_ip"].value;
-  if (robot_ip.empty)
-    logToConsole("No Robot IP address supplied\n");
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function()
-  {
-
-    var consoleTextarea = document.getElementById('content_console');
-    //consoleTextarea.value += xhttp.responseText;
-    //consoleTextarea.focus();
-    if (xhttp.readyState === XMLHttpRequest.DONE && xhttp.status === 200)
-    {
-        //consoleTextarea.value += xhttp.responseText + "\n";
-        var weta = JSON.parse(xhttp.responseText);
-        consoleTextarea.value += JSON.stringify(weta) + "\n";
-        consoleTextarea.focus();
+    xhttp.open("POST", "http://" + robot_ip.trim() + "/weta?cmd=" + cmd, true);
+    if (codes === undefined) {
+        xhttp.send();
     }
-
-  };
-  xhttp.open("GET", "http://" + robot_ip.trim() + "/weta?query=all", true);
-  xhttp.send();
+    else
+    {
+        xhttp.setRequestHeader("Content-type", "application/json");
+        var jsonstr = JSON.stringify(codes);
+        xhttp.send(jsonstr);
+    }
 }
 
-function onClickLaunch()
+Code.httpQueryWeta = function ()
+{
+    var settings = document.forms["settings"];
+    var robot_ip = settings.elements["robot_ip"].value;
+    if (robot_ip.empty)
+        this.logToConsole("No Robot IP address supplied\n");
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+
+        var consoleTextarea = document.getElementById('content_console');
+        //consoleTextarea.value += xhttp.responseText;
+        //consoleTextarea.focus();
+        if (xhttp.readyState === XMLHttpRequest.DONE && xhttp.status === 200)
+        {
+            //consoleTextarea.value += xhttp.responseText + "\n";
+            var weta = JSON.parse(xhttp.responseText);
+            consoleTextarea.value += JSON.stringify(weta) + "\n";
+            consoleTextarea.focus();
+        }
+
+    };
+    xhttp.open("GET", "http://" + robot_ip.trim() + "/weta?query=all", true);
+    xhttp.send();
+}
+
+function onClickPlay ()
 {
     //onSerialPortChange(); // Make sure the selected serial port is used
 
@@ -661,7 +682,7 @@ function onClickLaunch()
     var wasm;
     try
     {
-        wasm = compileLogo(code);
+        wasm = Code.compileLogo(code);
     }
     catch (logoerr)
     {
@@ -674,7 +695,7 @@ function onClickLaunch()
     var cricket;
     try
     {
-        cricket = assembleWasm(wasm);
+        cricket = Code.assembleWasm(wasm);
     }
     catch (wasmerr)
     {
@@ -684,6 +705,84 @@ function onClickLaunch()
         return;
     }
     //cricketComms.run(cricket);
-    httpPostCodes(cricket);
-    //httpQueryWeta();
+    var cmd = Code.recording ? "program" : "interpret";
+    Code.httpPostRobot(cmd, cricket);
+    //this.httpQueryWeta();
+}
+
+var downloadUrl = null;
+function onClickSave ()
+{
+    var filename = "wetablocks.xml";
+    var xmlDom = Blockly.Xml.workspaceToDom(Code.workspace);
+    var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+
+    var blob = new Blob([xmlText], {type: 'text/xml'});
+    if(window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    }
+    else{
+        var elem = window.document.createElement('a');
+        // Release any previous url resources
+        if(downloadUrl)
+            window.URL.revokeObjectURL(downloadUrl);
+
+        downloadUrl = window.URL.createObjectURL(blob);
+        elem.href = downloadUrl;
+        elem.download = filename;
+        document.body.appendChild(elem);
+        elem.click();
+        document.body.removeChild(elem);
+    }
+}
+
+function onClickOpen ()
+{
+    var elem = window.document.createElement('input');
+    elem.id = "uploadEl";
+    elem.type = "file";
+
+    elem.onchange = onFileSelected;
+    document.body.appendChild(elem);
+    elem.click();
+}
+
+function onFileSelected ()
+{
+    var fileList = document.getElementById("uploadEl").files;
+    if (fileList.length == 0)
+        return;
+    var xmlFile = fileList[0];
+
+    var reader = new FileReader();
+    reader.onload = function(e)
+    {
+        var xmlText = e.target.result;
+        var xml = Blockly.Xml.textToDom(xmlText);
+        Blockly.Xml.domToWorkspace(xml, Code.workspace);
+    };
+    reader.readAsText(xmlFile);
+    document.body.removeChild(fileList);
+}
+
+function onClickStop ()
+{
+    Code.httpPostRobot("stop");
+}
+
+function onClickRecord ()
+{
+    //Toggle the recording status and button style
+    var recordEl = document.getElementById("recordButton");
+    if(Code.recording)
+    {
+        Code.recording = false;
+        recordEl.classList.remove('on');
+    }
+    else
+    {
+        Code.recording = true;
+        recordEl.classList.add('on');
+    }
+
 }

@@ -76,12 +76,32 @@
                         <button id="trashButton" class="notext" title="...">
                             <img src='../../media/1x1.gif' class="trash icon21">
                         </button>
+                        <button id="openButton" class="notext" title="...">
+                            <img src='../../media/1x1.gif' class="open freeicons">
+                        </button>
+                        <button id="saveButton" class="notext" title="...">
+                            <img src='../../media/1x1.gif' class="save freeicons">
+                        </button>
+                        <!--
                         <button id="linkButton" class="notext" title="...">
                             <img src='../../media/1x1.gif' class="link icon21">
                         </button>
+                        -->
+                        <button id="stopButton" class="notext" title="...">
+                            <img src='../../media/1x1.gif' class="stop freeicons">
+                        </button>
+                        <button id="playButton" class="notext primary" title="...">
+                            <img src='../../media/1x1.gif' class="play freeicons">
+                        </button>
+                        
+                        <button id="recordButton" class="notext" title="...">
+                            <img src='../../media/1x1.gif' class="record freeicons">
+                        </button>
+                        <!--
                         <button id="runButton" class="notext primary" title="...">
                             <img src='../../media/1x1.gif' class="run icon21">
                         </button>
+                        -->
                     </td>
                 </tr>
             </table>
@@ -111,15 +131,56 @@
 -->
 
 <xml id="toolbox" style="display: none">
-    <category name="{catTurtle}" colour="65">
-        <block type="weta_turtle_forward">
-            <value name="VAL">
-                <block type="math_number">
-                    <field name="NUM">100</field>
-                </block>
+    <category name="{catFlow}" colour="120">
+        <block type="control_forever"></block>
+        <block type="controls_if"></block>
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
             </value>
         </block>
-        <block type="weta_turtle_backward">
+        <block type="controls_whileUntil"></block>
+        <block type="controls_for">
+            <value name="FROM">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="TO">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+            <value name="BY">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="controls_forEach"></block>
+    </category>
+    <category name="{catTime}"  colour="120">
+            <block type="weta_get_timer"></block>
+            <block type="weta_reset_timer"></block>
+            <block type="weta_wait_millis">
+                <value name="VAL">
+                    <block type="math_number">
+                        <field name="NUM">1000</field>
+                    </block>
+                </value>
+            </block>
+            <block type="weta_wait_tenths">
+                <value name="VAL">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+    <category name="{catTurtle}" colour="65">
+        <block type="weta_turtle_forward_backward">
             <value name="VAL">
                 <block type="math_number">
                     <field name="NUM">100</field>
@@ -146,25 +207,6 @@
         <block type="weta_analog_out"></block>
     </category>
     <category name="{catWeta}" colour="290">
-
-        <category name="{catTime}"  colour="120">
-            <block type="weta_get_timer"></block>
-            <block type="weta_reset_timer"></block>
-            <block type="weta_wait_millis">
-                <value name="VAL">
-                    <block type="math_number">
-                        <field name="NUM">1000</field>
-                    </block>
-                </value>
-            </block>
-            <block type="weta_wait_tenths">
-                <value name="VAL">
-                    <block type="math_number">
-                        <field name="NUM">10</field>
-                    </block>
-                </value>
-            </block>
-        </category>
         <category name="{catMotors}" colour="65">
             <block type="weta_motors_select"></block>
             <block type="weta_motors_control"></block>
@@ -210,36 +252,7 @@
         </category>
     </category>
     <sep></sep>
-    <category name="{catFlow}" colour="120">
-        <block type="control_forever"></block>
-        <block type="controls_if"></block>
-        <block type="controls_repeat_ext">
-            <value name="TIMES">
-                <shadow type="math_number">
-                    <field name="NUM">10</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="controls_whileUntil"></block>
-        <block type="controls_for">
-            <value name="FROM">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <value name="TO">
-                <shadow type="math_number">
-                    <field name="NUM">10</field>
-                </shadow>
-            </value>
-            <value name="BY">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="controls_forEach"></block>
-    </category>
+    
     <category name="{catLogic}" colour="160">
         <block type="logic_compare"></block>
         <block type="logic_operation"></block>

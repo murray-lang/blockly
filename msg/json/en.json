@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-01-30 13:52:57.137739",
+		"lastupdated": "2017-03-03 07:44:31.731547",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -404,6 +404,8 @@
 	"WETA_RIGHT": "right",
 	"WETA_UP": "up",
 	"WETA_DOWN": "down",
+	"WETA_FORWARD": "forward",
+	"WETA_BACKWARD": "backward",
 	"WETA_DIGITAL_IN_MSG0": "digital input %1",
 	"WETA_DIGITAL_IN_TOOLTIP": "Get the given digital input value",
 	"WETA_DIGITAL_OUT_MSG0": "digital output %1 = %2",
@@ -452,10 +454,8 @@
 	"WETA_WAIT_TENTHS_TOOLTIP": "Wait for the given tenths of a second",
 	"WETA_WAIT_UNTIL_MSG0": "wait until %1",
 	"WETA_WAIT_UNTIL_TOOLTIP": "Wait for the given condition to become true",
-	"WETA_TURTLE_FORWARD_MSG0": "forward %1 mm",
-	"WETA_TURTLE_FORWARD_TOOLTIP": "Move the turtle forward",
-	"WETA_TURTLE_BACKWARD_MSG0": "backward %1 mm",
-	"WETA_TURTLE_BACKWARD_TOOLTIP": "Move the turtle backward",
+	"WETA_TURTLE_FORWARD_BACKWARD_MSG0": "%1 %2 mm",
+	"WETA_TURTLE_FORWARD_BACKWARD_TOOLTIP": "Move the turtle forward or backward",
 	"WETA_TURTLE_TURN_MSG0": "turn %1 %2 degrees",
 	"WETA_TURTLE_TURN_TOOLTIP": "Turn left or right",
 	"WETA_TURTLE_PEN_MSG0": "pen %1",

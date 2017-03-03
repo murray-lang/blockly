@@ -1221,6 +1221,10 @@ Blockly.Msg.WETA_RIGHT = 'right';
 Blockly.Msg.WETA_UP = 'up';
 /// Down (eg pen)
 Blockly.Msg.WETA_DOWN = 'down';
+/// Forward (eg turtle)
+Blockly.Msg.WETA_FORWARD = 'forward';
+/// Backward (eg turtle)
+Blockly.Msg.WETA_BACKWARD = 'backward';
 /// Name of Weta Digital In block
 Blockly.Msg.WETA_DIGITAL_IN_MSG0 = 'digital input %1';
 /// Tooltip for Digital In block
@@ -1318,13 +1322,9 @@ Blockly.Msg.WETA_WAIT_UNTIL_MSG0 = 'wait until %1';
 /// Tooltip for Weta Wait Until block
 Blockly.Msg.WETA_WAIT_UNTIL_TOOLTIP = 'Wait for the given condition to become true';
 /// Name of Weta Turtle Forward block
-Blockly.Msg.WETA_TURTLE_FORWARD_MSG0 = 'forward %1 mm';
+Blockly.Msg.WETA_TURTLE_FORWARD_BACKWARD_MSG0 = '%1 %2 mm';
 /// Tooltip for Weta Turtle Forward block
-Blockly.Msg.WETA_TURTLE_FORWARD_TOOLTIP = 'Move the turtle forward'
-/// Name of Weta Turtle Backward block
-Blockly.Msg.WETA_TURTLE_BACKWARD_MSG0 = 'backward %1 mm';
-/// Tooltip for Weta Turtle Backward block
-Blockly.Msg.WETA_TURTLE_BACKWARD_TOOLTIP = 'Move the turtle backward';
+Blockly.Msg.WETA_TURTLE_FORWARD_BACKWARD_TOOLTIP = 'Move the turtle forward or backward'
 /// Name of Weta Turtle Turn block
 Blockly.Msg.WETA_TURTLE_TURN_MSG0 = 'turn %1 %2 degrees';
 /// Tooltip for Weta Turtle Turn block
